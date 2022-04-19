@@ -1,3 +1,5 @@
+const { hash } = require('../utils/passwordHash');
+
 module.exports = {
   async up(queryInterface) {
     /**
@@ -15,6 +17,7 @@ module.exports = {
         {
           username: 'John Doe',
           email: 'awni@gmail.com',
+          password: hash('awni@2020'),
           createdAt: new Date(),
           updatedAt: new Date(),
         },

@@ -1,9 +1,13 @@
+const express = require('express');
 const usersController = require('../controllers').users;
+const { validateUser } = require('../middlewares/validators/userValidator');
 
-module.exports = (app) => {
-  app.put('/users/:userId', usersController.update);
-  app.post('/users', usersController.create);
-  app.get('/users/:userId', usersController.show);
-  app.delete('/users/:userId', usersController.delete);
-  app.get('/users', usersController.getAll);
-};
+const router = express.Router();
+router.get('/users', usersController.getAll);
+router.put('/users/:userId', usersController.update);
+router.route('/users/').post(validateUser, usersController.create);
+// router.post('/users', usersController.create);
+router.get('/users/:userId', usersController.show);
+router.delete('/users/:userId', usersController.delete);
+
+module.exports = router;
