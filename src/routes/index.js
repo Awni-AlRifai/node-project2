@@ -5,4 +5,5 @@ module.exports = (app) => {
   app.post('/users', usersController.create);
   app.get('/users/:userId', usersController.show);
   app.delete('/users/:userId', usersController.delete);
+  app.get('/users', usersController.getAll);
 };
